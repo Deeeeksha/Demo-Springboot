@@ -136,11 +136,11 @@ pipeline{
 
                          {
 
-                             steps {
+                sh 'docker push deekshaaa/hello-world:1.0'
+                
+                }
 
-                sh 'docker push deekshaaa/hello-world:1.0'}
-
-                           }
+                           
 
                  }
 

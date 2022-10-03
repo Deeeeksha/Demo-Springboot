@@ -115,7 +115,7 @@ pipeline{
 
                 
 
-                stage("Login into docker hub") {
+                // stage("Login into docker hub") {
 
 
 
@@ -126,7 +126,7 @@ pipeline{
 
             // }
 
-        }
+        // }
 
                 stage("Push the Image to DockerHub")
 

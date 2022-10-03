@@ -107,7 +107,8 @@ pipeline{
 
                         {
 
-                          sh 'docker build -t deekshaaa/hello-world:1.0 .  '
+                          sh 'docker build -t hello-world:1.0 .  '
+                          sh 'docker tag hello-world:1.0 deekshaaa/my-hello-world:1.0'
 
                          }
 
@@ -136,7 +137,7 @@ pipeline{
 
                          {
 
-                sh 'docker push deekshaaa/hello-world:1.0'
+                sh 'docker push deekshaaa/my-hello-world:1.0'
                 
                 }
 

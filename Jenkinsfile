@@ -113,6 +113,21 @@ pipeline{
 
                  } 
 
+                
+
+                stage("Login into docker hub") {
+
+
+
+
+            steps {
+
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+
+            }
+
+        }
+
                 stage("Push the Image to DockerHub")
 
                 {
@@ -121,21 +136,9 @@ pipeline{
 
                          {
 
-                              script
+                             steps {
 
-                               {
-
-                                 docker.withRegistry('', 'dockerhub')
-
-                                  {
-
-                                    image_built.push()
-
-                                     image_built.push('latest')
-
-                                  }
-
-                               }
+                sh 'docker push deekshaaa/hello-world:1.0'}
 
                            }
 

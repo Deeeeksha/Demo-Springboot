@@ -70,7 +70,7 @@ pipeline{
 
              when  {
 
-                     branch "Production"
+                     branch "main"
 
                    }
 

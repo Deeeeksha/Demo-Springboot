@@ -48,19 +48,19 @@ pipeline{
 
        
 
-        stage('test')
+        // stage('test')
 
-          {
+        //   {
 
-            steps
+        //     steps
 
-                {
+        //         {
 
-                   runTests()
+        //            runTests()
 
-                }
+        //         }
 
-           }   
+        //    }   
 
   
 

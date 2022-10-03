@@ -107,15 +107,7 @@ pipeline{
 
                         {
 
-                          script
-
-                             {
-
-                               image_built=docker.build image_tag
-
-                    
-
-                              }
+                          sh 'docker build -t deekshaaa/hello-world:1.0 .  '
 
                          }
 

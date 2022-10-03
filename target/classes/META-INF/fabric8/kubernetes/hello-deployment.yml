@@ -1,0 +1,61 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    fabric8.io/git-commit: e7325f24f3f4aeab62c662222fdf734e00cb9358
+    fabric8.io/iconUrl: img/icons/spring-boot.svg
+    fabric8.io/git-branch: development
+    fabric8.io/metrics-path: dashboard/file/kubernetes-pods.json/?var-project=hello&var-version=0.0.1-SNAPSHOT
+    fabric8.io/scm-tag: HEAD
+    fabric8.io/scm-url: https://github.com/spring-projects/spring-boot/spring-boot-starter-parent/hello
+  labels:
+    app: hello
+    provider: fabric8
+    version: 0.0.1-SNAPSHOT
+    group: com.hello
+  name: hello
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: hello
+      provider: fabric8
+      group: com.hello
+  template:
+    metadata:
+      annotations:
+        fabric8.io/git-commit: e7325f24f3f4aeab62c662222fdf734e00cb9358
+        fabric8.io/metrics-path: dashboard/file/kubernetes-pods.json/?var-project=hello&var-version=0.0.1-SNAPSHOT
+        fabric8.io/scm-url: https://github.com/spring-projects/spring-boot/spring-boot-starter-parent/hello
+        fabric8.io/iconUrl: img/icons/spring-boot.svg
+        fabric8.io/git-branch: development
+        fabric8.io/scm-tag: HEAD
+      labels:
+        app: hello
+        provider: fabric8
+        version: 0.0.1-SNAPSHOT
+        group: com.hello
+    spec:
+      containers:
+      - env:
+        - name: KUBERNETES_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        image: hello/hello:snapshot-220924-162356-0733
+        imagePullPolicy: IfNotPresent
+        name: spring-boot
+        ports:
+        - containerPort: 8082
+          name: us-cli
+          protocol: TCP
+        - containerPort: 9779
+          name: prometheus
+          protocol: TCP
+        - containerPort: 8778
+          name: jolokia
+          protocol: TCP
+        securityContext:
+          privileged: false

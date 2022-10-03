@@ -1,0 +1,28 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    fabric8.io/git-commit: e7325f24f3f4aeab62c662222fdf734e00cb9358
+    prometheus.io/port: "9779"
+    fabric8.io/scm-url: https://github.com/spring-projects/spring-boot/spring-boot-starter-parent/hello
+    fabric8.io/iconUrl: img/icons/spring-boot.svg
+    fabric8.io/git-branch: development
+    prometheus.io/scrape: "true"
+    fabric8.io/scm-tag: HEAD
+  labels:
+    app: hello
+    provider: fabric8
+    version: 0.0.1-SNAPSHOT
+    group: com.hello
+  name: hello
+spec:
+  ports:
+  - name: us-cli
+    port: 8082
+    protocol: TCP
+    targetPort: 8082
+  selector:
+    app: hello
+    provider: fabric8
+    group: com.hello

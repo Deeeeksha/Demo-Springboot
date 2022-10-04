@@ -48,19 +48,19 @@ pipeline{
 
        
 
-        // stage('test')
+        stage('test')
 
-        //   {
+          {
 
-        //     steps
+            steps
 
-        //         {
+                {
 
-        //            runTests()
+                   runTests()
 
-        //         }
+                }
 
-        //    }   
+           }   
 
   
 
@@ -107,27 +107,19 @@ pipeline{
 
                         {
 
-                          sh 'docker build -t hello-world:1.0 .  '
-                          sh 'docker tag hello-world:1.0 deekshaaa/my-hello-world:1.0'
+                          script
+
+                             {
+
+                               image_built=docker.build image_tag
+
+                    
+
+                              }
 
                          }
 
                  } 
-
-                
-
-                // stage("Login into docker hub") {
-
-
-
-
-            // steps {
-
-            //     sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-
-            // }
-
-        // }
 
                 stage("Push the Image to DockerHub")
 
@@ -137,11 +129,23 @@ pipeline{
 
                          {
 
-                sh 'docker push deekshaaa/my-hello-world:1.0'
-                
-                }
+                              script
 
-                           
+                               {
+
+                                 docker.withRegistry('', 'dockerhub')
+
+                                  {
+
+                                    image_built.push()
+
+                                     image_built.push('latest')
+
+                                  }
+
+                               }
+
+                           }
 
                  }
 
@@ -150,4 +154,4 @@ pipeline{
         } 
 
      }
-}
+    }
